@@ -20,7 +20,9 @@ function App() {
 
   const [board, setBoard] = useState(Array(9).fill(null));
   const [onePLayer, setOnePlayer] = useState(true);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameOver, setGameOver] = useState('');
+  // const [scores, setScore] = useState({xScore:0, oScore:0});
+  // const [gameWinner, setGameWinner] = useState('');
   
   function handleClickBox(boxIdx){ // on every click it will update the state of the board
     const updatedBoard = board.map((value, idx)=>{
@@ -34,7 +36,7 @@ function App() {
 
     const winner = checkWinner(updatedBoard);
 
-    
+   
 
     setBoard(updatedBoard);
     setOnePlayer(!onePLayer);
@@ -45,7 +47,7 @@ function App() {
       const[x, y, z] = win_condition[index];
 
       if(board[x] && board[x] === board[y] && board[y] === board[z]){
-        setGameOver(true);
+        setGameOver(board[x]);
         console.log("Winner " + board[x]);
         return board[x];
       }
@@ -54,13 +56,14 @@ function App() {
   }
 
   function resetBoard(){
-    setGameOver(false);
+    setGameOver('');
     setBoard(Array(9).fill(null));
 
   }
 
   return (
     <div className="App">
+      {gameOver !==''  && <h2>Winner: {gameOver}</h2>}
       
       <Board board={board} onClick={gameOver ? resetBoard : handleClickBox} />
       <ResetButton resetBoard={resetBoard} />
