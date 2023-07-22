@@ -1,0 +1,22 @@
+.box{
+    background-color: white;
+    border: none;
+    border-radius: 10%;
+    text-align: center;
+    height: 3em;
+    width: 3em;
+    font-weight: bold;
+    margin: 1em ;
+}
+
+.box x{
+    color: red;
+}
+
+.box o{
+    color: blue;
+}
+
+.box:hover{
+    border: 3px solid black;
+}
